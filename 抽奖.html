@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>抽奖小程序</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>抽奖小程序</h1>
+  <button onclick="startLottery()">开始抽奖</button>
+  <div id="result"></div>
+
+  <script>
+    const options = ['选项 A', '选项 B', '选项 C', '选项 D'];
+    let lotteryInterval;
+
+    function startLottery() {
+      let i = 0;
+      const resultDiv = document.getElementById('result');
+      lotteryInterval = setInterval(() => {
+        resultDiv.textContent = options[i];
+        i = (i + 1) % options.length;
+      }, 100);
+
+      // 模拟抽奖时间，5 秒后停止并确定结果
+      setTimeout(() => {
+        clearInterval(lotteryInterval);
+        const randomIndex = Math.floor(Math.random() * options.length);
+        resultDiv.textContent = `中奖结果：${options[randomIndex]}`;
+      }, 5000);
+    }
+  </script>
+</body>
+
+</html>
